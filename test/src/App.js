@@ -1,6 +1,7 @@
 import './App.css';
 import React, {useEffect, useState} from 'react'
 import axios from "axios";
+import Table from "./Components/Table/Table";
 
 function App() {
 
@@ -12,35 +13,12 @@ function App() {
         axios(baseUrl)
             .then(response => {
                 setState(response.data)
-                console.log(state)
             })
     }, [])
 
     return (
         <div className="container">
-            <table className="table">
-                <thead className="thead-dark">
-                <tr>
-                    <th scope="col">id</th>
-                    <th scope="col">firstName</th>
-                    <th scope="col">lastName</th>
-                    <th scope="col">email</th>
-                    <th scope="col">phone</th>
-                </tr>
-                </thead>
-                <tbody>
-                {state.map(i =>
-                    <tr key={i.id}>
-                        <td>{i.id}</td>
-                        <td>{i.firstName}</td>
-                        <td>{i.lastName}</td>
-                        <td>{i.email}</td>
-                        <td>{i.phone}</td>
-                    </tr>)}
-
-                </tbody>
-            </table>
-
+            <Table state={state} setState={setState}/>
         </div>
     );
 }
