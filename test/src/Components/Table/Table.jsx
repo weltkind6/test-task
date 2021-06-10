@@ -1,10 +1,13 @@
 import React from 'react';
 import './Table.css'
 
-const Table = ({state, setState}) => {
+const Table = ({state, setState, toggle, setToggle}) => {
 
-    const sortDataHandler = () => {
-        setState([...state.sort((a, b) => a.id - b.id)])
+    const sortDataHandler = (callBack) => {
+        setToggle(!toggle)
+        if (toggle) {
+            setState([...state.sort((a, b) => a[callBack] > b[callBack] ? 1 : -1)])
+        } else setState([...state.sort((a, b) => a[callBack] < b[callBack] ? 1 : -1)])
     }
 
 
@@ -12,11 +15,11 @@ const Table = ({state, setState}) => {
         <table className="table">
             <thead className="thead-dark">
             <tr>
-                <th scope="col" onClick={sortDataHandler}>ID</th>
-                <th scope="col">FirstName</th>
-                <th scope="col">LastName</th>
-                <th scope="col">Email</th>
-                <th scope="col">Phone</th>
+                <th scope="col" onClick={() => sortDataHandler('id')}>ID</th>
+                <th scope="col" onClick={() => sortDataHandler('firstName')}>FirstName</th>
+                <th scope="col" onClick={() => sortDataHandler('lastName')}>LastName</th>
+                <th scope="col" onClick={() => sortDataHandler('email')}>Email</th>
+                <th scope="col" onClick={() => sortDataHandler('phone')}>Phone</th>
             </tr>
             </thead>
             <tbody>
