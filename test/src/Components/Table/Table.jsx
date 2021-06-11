@@ -1,5 +1,7 @@
 import React from 'react';
 import './Table.css'
+import ArrowUp from "../ToggleArrow/ArrowUp/ArrowUp";
+import ArrowEnd from "../ToggleArrow/ArrowEnd/ArrowEnd";
 
 const Table = ({state, setState, toggle, setToggle}) => {
 
@@ -15,9 +17,9 @@ const Table = ({state, setState, toggle, setToggle}) => {
         <table className="table">
             <thead className="thead-dark">
             <tr>
-                {/*{toggle ? <span role="img" aria-label="">🔺</span> : <span role="img" aria-label="">🔻</span>}*/}
                 <th scope="col" onClick={() => sortDataHandler('id')}>
                     ID
+                    {toggle ? <ArrowUp /> : <ArrowEnd />}
                 </th>
                 <th scope="col" onClick={() => sortDataHandler('firstName')}>FirstName</th>
                 <th scope="col" onClick={() => sortDataHandler('lastName')}>LastName</th>
