@@ -2,7 +2,7 @@ import React from 'react';
 import './Table.css'
 import ToggleArrow from "../ToggleArrow/ToggleArrow";
 
-const Table = ({state, toggle, title, sortData}) => {
+const Table = ({state, toggle, title, sortDataHandler}) => {
 
 
     return (
@@ -10,23 +10,23 @@ const Table = ({state, toggle, title, sortData}) => {
         <table className="table">
             <thead className="thead-dark">
             <tr>
-                <th scope="col" onClick={() => sortData('id')}>
+                <th scope="col" onClick={() => sortDataHandler('id')}>
                     ID
                     {title === 'id' ? <ToggleArrow toggle={toggle}/> : null}
                 </th>
-                <th scope="col" onClick={() => sortData('firstName')}>
+                <th scope="col" onClick={() => sortDataHandler('firstName')}>
                     FirstName
                     {title === 'firstName' ? <ToggleArrow toggle={toggle}/> : null}
                 </th>
-                <th scope="col" onClick={() => sortData('lastName')}>
+                <th scope="col" onClick={() => sortDataHandler('lastName')}>
                     LastName
                     {title === 'lastName' ? <ToggleArrow toggle={toggle}/> : null}
                 </th>
-                <th scope="col" onClick={() => sortData('email')}>
+                <th scope="col" onClick={() => sortDataHandler('email')}>
                     Email
                     {title === 'email' ? <ToggleArrow toggle={toggle}/> : null}
                 </th>
-                <th scope="col" onClick={() => sortData('phone')}>
+                <th scope="col" onClick={() => sortDataHandler('phone')}>
                     Phone
                     {title === 'phone' ? <ToggleArrow toggle={toggle}/> : null}
                 </th>
