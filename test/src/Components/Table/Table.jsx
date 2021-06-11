@@ -2,6 +2,7 @@ import React from 'react';
 import './Table.css'
 import ArrowUp from "../ToggleArrow/ArrowUp/ArrowUp";
 import ArrowEnd from "../ToggleArrow/ArrowEnd/ArrowEnd";
+import ToggleArrow from "../ToggleArrow/ToggleArrow";
 
 const Table = ({state, setState, toggle, setToggle}) => {
 
@@ -19,19 +20,31 @@ const Table = ({state, setState, toggle, setToggle}) => {
             <tr>
                 <th scope="col" onClick={() => sortDataHandler('id')}>
                     ID
-                    {toggle ? <ArrowUp /> : <ArrowEnd />}
+                    <ToggleArrow toggle={toggle}/>
                 </th>
-                <th scope="col" onClick={() => sortDataHandler('firstName')}>FirstName</th>
-                <th scope="col" onClick={() => sortDataHandler('lastName')}>LastName</th>
-                <th scope="col" onClick={() => sortDataHandler('email')}>Email</th>
-                <th scope="col" onClick={() => sortDataHandler('phone')}>Phone</th>
+                <th scope="col" onClick={() => sortDataHandler('firstName')}>
+                    FirstName
+                    <ToggleArrow toggle={toggle}/>
+                </th>
+                <th scope="col" onClick={() => sortDataHandler('lastName')}>
+                    LastName
+                    <ToggleArrow toggle={toggle}/>
+                </th>
+                <th scope="col" onClick={() => sortDataHandler('email')}>
+                    Email
+                    <ToggleArrow toggle={toggle}/>
+                </th>
+                <th scope="col" onClick={() => sortDataHandler('phone')}>
+                    Phone
+                    <ToggleArrow toggle={toggle}/>
+                </th>
             </tr>
             </thead>
 
             <tbody>
             {state.map(i =>
                 <tr key={i.id}>
-                    <td>{i.id}</td>
+                    <td>{i.id + Math.floor(Math.random() * 100)}</td>
                     <td>{i.firstName}</td>
                     <td>{i.lastName}</td>
                     <td>{i.email}</td>
@@ -44,5 +57,5 @@ const Table = ({state, setState, toggle, setToggle}) => {
 };
 
 export default Table;
-
-//
+// {toggle ? <ArrowUp /> : <ArrowEnd />}
+// setState([...state.sort((a, b) => a[callBack] < b[callBack] ? 1 : -1)])
