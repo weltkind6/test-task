@@ -2,6 +2,7 @@ import './App.css';
 import React, {useEffect, useState} from 'react'
 import axios from "axios";
 import Table from "./Components/Table/Table";
+import Preloader from "./Components/Preloader/Preloader";
 
 function App() {
 
@@ -20,11 +21,7 @@ function App() {
 
     return (
         <div className="container">
-            <div className='preloader'>
-                {receiving ?
-                    <img src="https://media4.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif" alt="img" className='preloaderImg'/>
-                    : null}
-            </div>
+            <Preloader receiving={receiving}/>
             <Table
                 state={state}
                 setState={setState}

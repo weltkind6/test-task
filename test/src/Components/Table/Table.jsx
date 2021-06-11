@@ -15,13 +15,17 @@ const Table = ({state, setState, toggle, setToggle}) => {
         <table className="table">
             <thead className="thead-dark">
             <tr>
-                <th scope="col" onClick={() => sortDataHandler('id')}>ID</th>
+                {/*{toggle ? <span role="img" aria-label="">🔺</span> : <span role="img" aria-label="">🔻</span>}*/}
+                <th scope="col" onClick={() => sortDataHandler('id')}>
+                    ID
+                </th>
                 <th scope="col" onClick={() => sortDataHandler('firstName')}>FirstName</th>
                 <th scope="col" onClick={() => sortDataHandler('lastName')}>LastName</th>
                 <th scope="col" onClick={() => sortDataHandler('email')}>Email</th>
                 <th scope="col" onClick={() => sortDataHandler('phone')}>Phone</th>
             </tr>
             </thead>
+
             <tbody>
             {state.map(i =>
                 <tr key={i.id}>
@@ -38,3 +42,5 @@ const Table = ({state, setState, toggle, setToggle}) => {
 };
 
 export default Table;
+
+//
