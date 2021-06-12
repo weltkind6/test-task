@@ -7,6 +7,8 @@ import TableMoreData from "./Components/Table/TableMoreData/TableMoreData";
 
 function App() {
 
+    const apiUrl = 'http://www.filltext.com/?rows=32&id=%7Bnumber%7C1000%7D&firstName=%7BfirstName%7D&lastName=%7BlastName%7D&email=%7Bemail%7D&phone=%7Bphone%7C(xxx)xxx-xx-xx%7D&address=%7BaddressObject%7D&description=%7Blorem%7C32%7D'
+
     const [smallData, setSmallData] = useState([])
     const [toggle, setToggle] = useState(true)
     const [receiving, setReceiving] = useState(true)
@@ -14,13 +16,21 @@ function App() {
     const [tableMoreData, setTableMoreData] = useState('')
 
     // Server request
-    useEffect(() => {
-        axios('http://www.filltext.com/?rows=32&id=%7Bnumber%7C1000%7D&firstName=%7BfirstName%7D&lastName=%7BlastName%7D&email=%7Bemail%7D&phone=%7Bphone%7C(xxx)xxx-xx-xx%7D&address=%7BaddressObject%7D&description=%7Blorem%7C32%7D')
+    // useEffect(() => {
+    //     axios(apiUrl)
+    //         .then(response => {
+    //             setSmallData(response.data)
+    //             setReceiving(false)
+    //         })
+    // }, [])
+
+    const getRequest = async () => {
+        axios(apiUrl)
             .then(response => {
                 setSmallData(response.data)
                 setReceiving(false)
             })
-    }, [])
+    }
 
     // Sort data
     const sortDataHandler = (tableTitle) => {
@@ -39,7 +49,6 @@ function App() {
 
     return (
         <div className="container">
-            <Preloader receiving={receiving}/>
             <Table
                 smallData={smallData}
                 setSmallData={setSmallData}
@@ -50,7 +59,22 @@ function App() {
                 setTableMoreData={setTableMoreData}
                 getValueHandler={getValueHandler}
             />
-            <TableMoreData tableMoreData={tableMoreData}/>
+            <div className="buttonsBlock">
+                <button
+                    onClick={getRequest}
+                    type="button"
+                    className="btn btn-primary">
+                    Small
+                </button>
+                <button
+                    type="button"
+                    className="btn btn-warning">
+                    Large
+                </button>
+            </div>
+            <Preloader receiving={receiving}/>
+
+            {receiving ? console.log('receiving...(non loaded)') : <TableMoreData tableMoreData={tableMoreData}/>}
         </div>
     );
 }
