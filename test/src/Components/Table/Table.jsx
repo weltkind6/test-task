@@ -2,7 +2,8 @@ import React from 'react';
 import './Table.css'
 import ToggleArrow from "../ToggleArrow/ToggleArrow";
 
-const Table = ({state, toggle, title, sortDataHandler}) => {
+const Table = ({smallData, toggle, title, sortDataHandler, getValueHandler}) => {
+
 
 
     return (
@@ -34,8 +35,8 @@ const Table = ({state, toggle, title, sortDataHandler}) => {
             </thead>
 
             <tbody>
-            {state.map((i, index) =>
-                <tr key={index}>
+            {smallData.map((i, index) =>
+                <tr key={index} onClick={() => getValueHandler(i)}>
                     <td>{i.id}</td>
                     <td>{i.firstName}</td>
                     <td>{i.lastName}</td>
