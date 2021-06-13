@@ -1,4 +1,5 @@
 .buttonsBlock {
-    display: flex;
-    justify-content: center;
+   display: flex;
+    justify-content: space-between;
+    padding: 1em 0 1em 0;
 }
