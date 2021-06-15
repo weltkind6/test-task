@@ -1,32 +1,35 @@
 import './App.css';
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import axios from "axios";
-import ContainerComp from "./Components/ContainerComp/ContainerComp";
+import Table from "./Components/Table/Table";
+import Preloader from "./Components/Preloader/Preloader";
+import TableMoreData from "./Components/Table/TableMoreData/TableMoreData";
 
 function App() {
 
-    const apiUrl = 'http://www.filltext.com/?rows=32&id=%7Bnumber%7C1000%7D&firstName=%7BfirstName%7D&lastName=%7BlastName%7D&email=%7Bemail%7D&phone=%7Bphone%7C(xxx)xxx-xx-xx%7D&address=%7BaddressObject%7D&description=%7Blorem%7C32%7D'
+    const apiSmallData = 'http://www.filltext.com/?rows=32&id=%7Bnumber%7C1000%7D&firstName=%7BfirstName%7D&lastName=%7BlastName%7D&email=%7Bemail%7D&phone=%7Bphone%7C(xxx)xxx-xx-xx%7D&address=%7BaddressObject%7D&description=%7Blorem%7C32%7D'
+    const apiBigData = 'http://www.filltext.com/?rows=64&id={number|1000}&firstName={firstName}&delay=3&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}'
 
     const [smallData, setSmallData] = useState([])
+    const [bigData, setBigData] = useState([])
     const [toggle, setToggle] = useState(true)
     const [receiving, setReceiving] = useState(true)
     const [title, setColumnTitle] = useState('')
     const [tableMoreData, setTableMoreData] = useState('')
 
-
     // Server request
-    // useEffect(() => {
-    //     axios(apiUrl)
-    //         .then(response => {
-    //             setSmallData(response.data)
-    //             setReceiving(false)
-    //         })
-    // }, [])
 
-    const getRequest = async () => {
-        axios(apiUrl)
+    const getSmallDataRequest = async () => {
+        axios(apiSmallData)
             .then(response => {
                 setSmallData(response.data)
+                setReceiving(false)
+            })
+    }
+    const getBigDataRequest = async () => {
+        axios(apiBigData)
+            .then(response => {
+                setBigData(response.data)
                 setReceiving(false)
             })
     }
@@ -48,37 +51,35 @@ function App() {
 
     return (
         <div className="container">
+            <Table
+                smallData={smallData}
+                setSmallData={setSmallData}
+                bigData={bigData}
+                toggle={toggle}
+                setToggle={setToggle}
+                sortDataHandler={sortDataHandler}
+                title={title}
+                setTableMoreData={setTableMoreData}
+                getValueHandler={getValueHandler}
+
+            />
             <div className="buttonsBlock">
                 <button
-                    onClick={getRequest}
+                    onClick={getSmallDataRequest}
                     type="button"
                     className="btn btn-primary">
-                    Small (32)
+                    Small
                 </button>
                 <button
+                    onClick={getBigDataRequest}
                     type="button"
                     className="btn btn-warning">
-                    Large (1000)
+                    Large
                 </button>
             </div>
+            <Preloader receiving={receiving}/>
 
-            {receiving
-                ?
-                console.log(receiving)
-                :
-                <ContainerComp
-                    tableMoreData={tableMoreData}
-                    receiving={receiving}
-                    smallData={smallData}
-                    setSmallData={setSmallData}
-                    toggle={toggle}
-                    setToggle={setToggle}
-                    sortDataHandler={sortDataHandler}
-                    title={title}
-                    setTableMoreData={setTableMoreData}
-                    getValueHandler={getValueHandler}
-                />
-            }
+            {receiving ? console.log('receiving...(non loaded)') : <TableMoreData tableMoreData={tableMoreData}/>}
         </div>
     );
 }
