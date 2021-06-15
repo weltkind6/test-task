@@ -1,10 +1,12 @@
 import React from 'react';
 import Table from "../Table/Table";
 import TableMoreData from "../Table/TableMoreData/TableMoreData";
+import Preloader from "../Preloader/Preloader";
 
 const Container = props => {
     return (
         <>
+            {/*<Preloader/>*/}
             <Table
                 smallData={props.smallData}
                 setSmallData={props.setSmallData}

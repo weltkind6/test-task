@@ -14,7 +14,7 @@ function App() {
     const [smallData, setSmallData] = useState([])
     const [bigData, setBigData] = useState([])
     const [toggle, setToggle] = useState(true)
-    const [receiving, setReceiving] = useState(true)
+    const [receiving, setReceiving] = useState(false)
     const [title, setColumnTitle] = useState('')
     const [tableMoreData, setTableMoreData] = useState('')
 
@@ -24,14 +24,14 @@ function App() {
         axios(apiSmallData)
             .then(response => {
                 setSmallData(response.data)
-                setReceiving(false)
+                setReceiving(true)
             })
     }
     const getBigDataRequest = async () => {
         axios(apiBigData)
             .then(response => {
                 setBigData(response.data)
-                setReceiving(false)
+                setReceiving(true)
             })
     }
 
@@ -52,18 +52,6 @@ function App() {
 
     return (
         <div className="container">
-            <Container
-                smallData={smallData}
-                setSmallData={setSmallData}
-                bigData={bigData}
-                toggle={toggle}
-                setToggle={setToggle}
-                sortDataHandler={sortDataHandler}
-                title={title}
-                setTableMoreData={setTableMoreData}
-                getValueHandler={getValueHandler}
-                tableMoreData={tableMoreData}
-            />
             <div className="buttonsBlock">
                 <button
                     onClick={getSmallDataRequest}
@@ -78,9 +66,22 @@ function App() {
                     Large
                 </button>
             </div>
-            <Preloader receiving={receiving}/>
 
-            {receiving ? console.log('receiving...(non loaded)') : null}
+            {receiving ?
+                <Container
+                smallData={smallData}
+                setSmallData={setSmallData}
+                bigData={bigData}
+                toggle={toggle}
+                setToggle={setToggle}
+                sortDataHandler={sortDataHandler}
+                title={title}
+                setTableMoreData={setTableMoreData}
+                getValueHandler={getValueHandler}
+                tableMoreData={tableMoreData}
+                />
+
+                : null}
         </div>
     );
 }
