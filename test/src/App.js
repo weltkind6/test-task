@@ -1,9 +1,6 @@
 import './App.css';
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import axios from "axios";
-import Table from "./Components/Table/Table";
-import Preloader from "./Components/Preloader/Preloader";
-import TableMoreData from "./Components/Table/TableMoreData/TableMoreData";
 import Container from "./Components/Container/Container";
 
 function App() {
@@ -17,14 +14,19 @@ function App() {
     const [receiving, setReceiving] = useState(false)
     const [title, setColumnTitle] = useState('')
     const [tableMoreData, setTableMoreData] = useState('')
+    const [currentPage, setCurrentPage] = useState(1)
+    const [usersPerPage] = useState(50)
+    const [preloader, setPreloader] = useState(false)
 
     // Server request
 
     const getSmallDataRequest = async () => {
+        setPreloader(true)
         axios(apiSmallData)
             .then(response => {
                 setSmallData(response.data)
                 setReceiving(true)
+                setPreloader(false)
             })
     }
     const getBigDataRequest = async () => {
@@ -69,16 +71,17 @@ function App() {
 
             {receiving ?
                 <Container
-                smallData={smallData}
-                setSmallData={setSmallData}
-                bigData={bigData}
-                toggle={toggle}
-                setToggle={setToggle}
-                sortDataHandler={sortDataHandler}
-                title={title}
-                setTableMoreData={setTableMoreData}
-                getValueHandler={getValueHandler}
-                tableMoreData={tableMoreData}
+                    preloader={preloader}
+                    smallData={smallData}
+                    setSmallData={setSmallData}
+                    bigData={bigData}
+                    toggle={toggle}
+                    setToggle={setToggle}
+                    sortDataHandler={sortDataHandler}
+                    title={title}
+                    setTableMoreData={setTableMoreData}
+                    getValueHandler={getValueHandler}
+                    tableMoreData={tableMoreData}
                 />
 
                 : null}
