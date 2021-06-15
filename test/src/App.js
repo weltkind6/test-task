@@ -4,6 +4,7 @@ import axios from "axios";
 import Table from "./Components/Table/Table";
 import Preloader from "./Components/Preloader/Preloader";
 import TableMoreData from "./Components/Table/TableMoreData/TableMoreData";
+import Container from "./Components/Container/Container";
 
 function App() {
 
@@ -51,7 +52,7 @@ function App() {
 
     return (
         <div className="container">
-            <Table
+            <Container
                 smallData={smallData}
                 setSmallData={setSmallData}
                 bigData={bigData}
@@ -61,7 +62,7 @@ function App() {
                 title={title}
                 setTableMoreData={setTableMoreData}
                 getValueHandler={getValueHandler}
-
+                tableMoreData={tableMoreData}
             />
             <div className="buttonsBlock">
                 <button
@@ -79,7 +80,7 @@ function App() {
             </div>
             <Preloader receiving={receiving}/>
 
-            {receiving ? console.log('receiving...(non loaded)') : <TableMoreData tableMoreData={tableMoreData}/>}
+            {receiving ? console.log('receiving...(non loaded)') : null}
         </div>
     );
 }
