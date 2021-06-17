@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Pagination = ({totalUsersCount, usersPerPage}) => {
+const Pagination = ({totalUsersCount, usersPerPage, goPaginate}) => {
 
     const pageNumber = []
     for (let i = 1; i <= Math.ceil(totalUsersCount / usersPerPage); i++) {
@@ -14,7 +14,11 @@ const Pagination = ({totalUsersCount, usersPerPage}) => {
                 {
                     pageNumber.map(number =>
                         <li className="page-item" key={number}>
-                            <a className="page-link" href="#">{number}</a>
+                            <a onClick={() => goPaginate(number)}
+                               className="page-link"
+                               href="#">
+                                {number}
+                            </a>
                         </li>)
                 }
             </ul>

@@ -25,6 +25,7 @@ const Container = props => {
                 <Pagination
                     totalUsersCount={props.totalUsersCount}
                     usersPerPage={props.usersPerPage}
+                    goPaginate={props.goPaginate}
                 />
             </>
     );

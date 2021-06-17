@@ -14,14 +14,12 @@ function App() {
     const [currentPage, setCurrentPage] = useState(1)
     const [usersPerPage] = useState(50)
 
-    const totalUsersCount = bigData.length
     const lastUsersIndex = currentPage * usersPerPage
     const firstUsersIndex = lastUsersIndex - usersPerPage
     const currentUser = bigData.slice(firstUsersIndex, lastUsersIndex)
+    const goPaginate = pageNumber => setCurrentPage(pageNumber)
 
-
-
-
+    //
     const [toggle, setToggle] = useState(true)
     const [receiving, setReceiving] = useState(false)
     const [title, setColumnTitle] = useState('')
@@ -87,7 +85,7 @@ function App() {
                     preloader={preloader}
                     smallData={smallData}
                     setSmallData={setSmallData}
-                    bigData={bigData}
+                    bigData={currentUser}
                     toggle={toggle}
                     setToggle={setToggle}
                     sortDataHandler={sortDataHandler}
@@ -95,8 +93,9 @@ function App() {
                     setTableMoreData={setTableMoreData}
                     getValueHandler={getValueHandler}
                     tableMoreData={tableMoreData}
-                    totalUsersCount={totalUsersCount}
+                    totalUsersCount={bigData.length}
                     usersPerPage={usersPerPage}
+                    goPaginate={goPaginate}
                 />
 
                 : null}
