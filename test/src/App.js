@@ -6,17 +6,30 @@ import Container from "./Components/Container/Container";
 function App() {
 
     const apiSmallData = 'http://www.filltext.com/?rows=32&id=%7Bnumber%7C1000%7D&firstName=%7BfirstName%7D&lastName=%7BlastName%7D&email=%7Bemail%7D&phone=%7Bphone%7C(xxx)xxx-xx-xx%7D&address=%7BaddressObject%7D&description=%7Blorem%7C32%7D'
-    const apiBigData = 'http://www.filltext.com/?rows=64&id={number|1000}&firstName={firstName}&delay=3&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}'
+    const apiBigData = 'http://www.filltext.com/?rows=1000&id={number|1000}&firstName={firstName}&delay=3&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}'
 
     const [smallData, setSmallData] = useState([])
+    // Pagination
     const [bigData, setBigData] = useState([])
+    const [currentPage, setCurrentPage] = useState(1)
+    const [usersPerPage] = useState(50)
+
+    const totalUsersCount = bigData.length
+    const lastUsersIndex = currentPage * usersPerPage
+    const firstUsersIndex = lastUsersIndex - usersPerPage
+    const currentUser = bigData.slice(firstUsersIndex, lastUsersIndex)
+
+
+
+
     const [toggle, setToggle] = useState(true)
     const [receiving, setReceiving] = useState(false)
     const [title, setColumnTitle] = useState('')
     const [tableMoreData, setTableMoreData] = useState('')
-    const [currentPage, setCurrentPage] = useState(1)
-    const [usersPerPage] = useState(50)
     const [preloader, setPreloader] = useState(false)
+
+
+
 
     // Server request
 
@@ -82,6 +95,8 @@ function App() {
                     setTableMoreData={setTableMoreData}
                     getValueHandler={getValueHandler}
                     tableMoreData={tableMoreData}
+                    totalUsersCount={totalUsersCount}
+                    usersPerPage={usersPerPage}
                 />
 
                 : null}

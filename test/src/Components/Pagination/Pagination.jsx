@@ -1,14 +1,22 @@
 import React from 'react';
 
-const Pagination = () => {
+const Pagination = ({totalUsersCount, usersPerPage}) => {
+
+    const pageNumber = []
+    for (let i = 1; i <= Math.ceil(totalUsersCount / usersPerPage); i++) {
+        pageNumber.push(i)
+    }
+
+
     return (
         <nav aria-label="...">
             <ul className="pagination pagination-sm">
-                <li className="page-item disabled">
-                    <a className="page-link" href="#" tabIndex="-1">1</a>
-                </li>
-                <li className="page-item"><a className="page-link" href="#">2</a></li>
-                <li className="page-item"><a className="page-link" href="#">3</a></li>
+                {
+                    pageNumber.map(number =>
+                        <li className="page-item" key={number}>
+                            <a className="page-link" href="#">{number}</a>
+                        </li>)
+                }
             </ul>
         </nav>
     );

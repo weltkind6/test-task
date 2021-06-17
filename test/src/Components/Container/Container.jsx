@@ -22,7 +22,10 @@ const Container = props => {
                     getValueHandler={props.getValueHandler}
                 />
                 <TableMoreData tableMoreData={props.tableMoreData}/>
-                <Pagination />
+                <Pagination
+                    totalUsersCount={props.totalUsersCount}
+                    usersPerPage={props.usersPerPage}
+                />
             </>
     );
 };
