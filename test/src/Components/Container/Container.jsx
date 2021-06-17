@@ -2,6 +2,7 @@ import React from 'react';
 import Table from "../Table/Table";
 import TableMoreData from "../Table/TableMoreData/TableMoreData";
 import Preloader from "../Preloader/Preloader";
+import Pagination from "../Pagination/Pagination";
 
 const Container = props => {
 
@@ -21,6 +22,7 @@ const Container = props => {
                     getValueHandler={props.getValueHandler}
                 />
                 <TableMoreData tableMoreData={props.tableMoreData}/>
+                <Pagination />
             </>
     );
 };
