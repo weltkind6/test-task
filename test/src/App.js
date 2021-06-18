@@ -2,6 +2,7 @@ import './App.css';
 import React, {useState} from 'react'
 import axios from "axios";
 import Container from "./Components/Container/Container";
+import Search from "./Components/Search/Search";
 
 function App() {
 
@@ -9,6 +10,7 @@ function App() {
     const apiBigData = 'http://www.filltext.com/?rows=1000&id={number|1000}&firstName={firstName}&delay=3&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}'
 
     const [smallData, setSmallData] = useState([])
+
     // Pagination
     const [bigData, setBigData] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
@@ -25,6 +27,9 @@ function App() {
     const [title, setColumnTitle] = useState('')
     const [tableMoreData, setTableMoreData] = useState('')
     const [preloader, setPreloader] = useState(false)
+
+    // Search
+
 
 
 
@@ -99,6 +104,7 @@ function App() {
                 />
 
                 : null}
+
         </div>
     );
 }
