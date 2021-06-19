@@ -3,6 +3,7 @@ import React, {useState} from 'react'
 import axios from "axios";
 import Container from "./Components/Container/Container";
 import Search from "./Components/Search/Search";
+import AddNewUser from "./Components/AddNewUser/AddNewUser";
 
 function App() {
 
@@ -31,9 +32,6 @@ function App() {
     // Search
 
 
-
-
-
     // Server request
 
     const getSmallDataRequest = async () => {
@@ -44,6 +42,7 @@ function App() {
                 setReceiving(true)
                 setPreloader(false)
             })
+            .catch((err) => console.log(err));
     }
     const getBigDataRequest = async () => {
         axios(apiBigData)
@@ -51,6 +50,7 @@ function App() {
                 setBigData(response.data)
                 setReceiving(true)
             })
+            .catch((err) => console.log(err));
     }
 
     // Sort data
@@ -78,12 +78,13 @@ function App() {
                     Small
                 </button>
                 <button
-                    onClick={getBigDataRequest}
                     type="button"
-                    className="btn btn-warning">
-                    Large
+                    className="btn btn-success"
+                >Success
                 </button>
+
             </div>
+            <AddNewUser/>
 
             {receiving ?
                 <Container

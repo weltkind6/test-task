@@ -8,8 +8,10 @@ const Search = ({bigData}) => {
         if(!search) {
             return null
         }
-        console.log(bigData.map(i => i.firstName).filter(el => el.includes(search)))
+        return (bigData.map(i => i.firstName).filter(el => el.includes(search)))
     }
+    const filteredData = onSearchHandler()
+    console.log(filteredData)
 
 
     const onPushEnter = e => {
