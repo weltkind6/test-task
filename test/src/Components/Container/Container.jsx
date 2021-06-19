@@ -4,6 +4,7 @@ import TableMoreData from "../Table/TableMoreData/TableMoreData";
 import Preloader from "../Preloader/Preloader";
 import Pagination from "../Pagination/Pagination";
 import Search from "../Search/Search";
+import AddNewUser from "../AddNewUser/AddNewUser";
 
 const Container = props => {
 
@@ -12,6 +13,7 @@ const Container = props => {
         props.preloader ? <Preloader/> :
             <>
                 <Search bigData={props.bigData}/>
+                <AddNewUser/>
                 <Table
                     smallData={props.smallData}
                     setSmallData={props.setSmallData}

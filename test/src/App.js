@@ -78,13 +78,12 @@ function App() {
                     Small
                 </button>
                 <button
+                    onClick={getBigDataRequest}
                     type="button"
                     className="btn btn-success"
-                >Success
+                >Big data
                 </button>
-
             </div>
-            <AddNewUser/>
 
             {receiving ?
                 <Container
