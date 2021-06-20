@@ -2,8 +2,6 @@ import './App.css';
 import React, {useState} from 'react'
 import axios from "axios";
 import Container from "./Components/Container/Container";
-import Search from "./Components/Search/Search";
-import AddNewUser from "./Components/AddNewUser/AddNewUser";
 
 function App() {
 
@@ -29,7 +27,18 @@ function App() {
     const [tableMoreData, setTableMoreData] = useState('')
     const [preloader, setPreloader] = useState(false)
 
-    // Search
+    // Add user
+
+    const [newUser, setNewUser] = useState({})
+    const getDataFromInput = ({id, firstName, lastName, email, phone}) => {
+        setNewUser({id, firstName, lastName, email, phone})
+        smallData.unshift(newUser)
+    }
+
+
+
+
+
 
 
     // Server request
@@ -101,6 +110,7 @@ function App() {
                     totalUsersCount={bigData.length}
                     usersPerPage={usersPerPage}
                     goPaginate={goPaginate}
+                    getDataFromInput={getDataFromInput}
                 />
 
                 : null}

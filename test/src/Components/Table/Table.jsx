@@ -5,7 +5,6 @@ import ToggleArrow from "../ToggleArrow/ToggleArrow";
 const Table = ({smallData, bigData={bigData}, toggle, title, sortDataHandler, getValueHandler}) => {
 
 
-
     return (
 
         <table className="table">

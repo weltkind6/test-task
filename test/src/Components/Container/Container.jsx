@@ -8,12 +8,11 @@ import AddNewUser from "../AddNewUser/AddNewUser";
 
 const Container = props => {
 
-
     return (
         props.preloader ? <Preloader/> :
             <>
                 <Search bigData={props.bigData}/>
-                <AddNewUser/>
+                <AddNewUser getDataFromInput={props.getDataFromInput}/>
                 <Table
                     smallData={props.smallData}
                     setSmallData={props.setSmallData}
