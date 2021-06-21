@@ -31,8 +31,8 @@ function App() {
 
     const [newUser, setNewUser] = useState({})
     const getDataFromInput = ({id, firstName, lastName, email, phone}) => {
-        setNewUser({id, firstName, lastName, email, phone})
-        smallData.unshift(newUser)
+        setNewUser({})
+        smallData.unshift({id, firstName, lastName, email, phone})
     }
 
 
